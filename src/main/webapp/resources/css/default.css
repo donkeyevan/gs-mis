@@ -1,0 +1,244 @@
+@CHARSET "utf-8";
+
+/* new style */
+
+frame#menu {
+	border:0px;
+}
+
+frame#body {
+	border-top:#6694e3 5px solid;
+	border-left:#6694e3 5px solid;
+}
+
+body, div, table, tr, td, frameset, frame {
+	font-size: 11px;
+	margin:0px;
+	padding:0px;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+	color: #000000;
+}
+
+table {
+	width:100%;
+}
+
+/* menu style */
+
+table.menu {
+	border:0px;	
+	border-spacing:0px;
+}
+
+table.menu a {
+	display:block;
+	padding:8px 20px;
+	border:0px;
+}	
+
+a.normal {
+	background-color:white;
+	color:black;
+}
+	
+a.selected {
+	background-color:#6694e3;
+	color:white;
+}
+
+input {
+	padding:3px;
+}
+
+
+.clear { clear:both;}
+
+/* frame style */
+
+body.frame {
+	background-color:#e0ecff;
+}
+
+div.action-panel {
+	padding:10px;
+}
+
+table.list {
+	padding:0px;
+	border-spacing:0px;
+	border-collapse:collapse;
+}
+
+table.list tr {
+	background-color:#efefef;
+	border-top:#d6d6d6 1px solid;
+	border-bottom:#d6d6d6 1px solid;
+}
+
+table.list tr.body:hover {
+	background-color:#ffffcc;
+}
+
+table.list td {
+	padding:2px 10px;
+	min-width:60px;
+}
+
+table.list tr.title td {
+	height:30px;
+	font-weight:bold;
+}
+
+a.action, a.feedback_answer, a.feedback_detail, a.feedback_type {
+	display:block;
+	text-align:center;
+	border:#a0a0a0 1px solid;
+	padding:5px 10px;
+	background:#e3e3e3;
+	float:left;
+	margin-right:5px;
+}
+div.answer-textarea{
+	margin-left:10px;
+	width:420;
+	float:left;
+}
+div.item-info, div.query-table, div.edit {
+	padding:10px;
+}
+
+div.item-info table {
+	width:400px;
+	border-spacing:0px;
+	border-collapse:collapse;
+}
+
+div.item-info table td {
+	padding:2px 0px;
+}
+
+div.item-info table td.name {
+	width:160px;
+}
+
+div.item-info table td.value {
+	width:260px;
+}
+
+div.item-info input, table.item-edit-table input {
+	min-width:250px;	
+}
+
+div#model_table p, div#submit {
+	padding:10px;
+}
+
+div.item {
+	background-color:#efefef;
+	border-top:#d6d6d6 1px solid;
+	border-bottom:#d6d6d6 1px solid;
+	min-width:700px;
+	float: left;
+	clear: both;
+}
+
+div.item span {
+	display:block;
+	float:left;
+	height:24px;
+	line-height:24px;
+}
+
+div.item div.name span, table.item-edit-table td.name {
+	min-width:80px;	
+}
+
+div.item div.name, div.item div.type, div.item div.value {
+	padding:5px 10px;
+	float:left;
+}
+input.num-value {
+	max-width:50px;
+}
+input.wide-item-value {
+	min-width: 200px;
+	width: 400px;
+	padding:5px 10px;
+	float:left;
+}
+
+input.item-value {
+	min-width:100px;
+}
+
+div.item div.name {
+	clear:both;
+}
+
+select {
+	min-width:60px;
+}
+
+div.item-table {
+	width: 98%;
+	margin-left: 10px;
+}
+
+table.item-edit-table {
+	padding:10px;
+	width:100%;
+	border-spacing:0px;
+	border-collapse:collapse;
+}
+
+table.item-edit-table td  {
+	padding-left:10px;
+	background-color:#efefef;
+	border-top:#d6d6d6 1px solid;
+	border-bottom:#d6d6d6 1px solid;
+}
+
+table.item-edit-table td.name  {
+	width:150px;
+	min-width:80px;
+}
+
+div.query-table {
+	padding-top:30px;	
+}
+
+div.query-table table {
+	width:400px;
+	border-spacing:0px;
+	border-collapse:collapse;	
+}
+
+div.query-table table td.name {
+	padding:2px 0px;
+	width:100px;
+	min-width:120px;
+}
+
+div.query-table table td.value {
+	padding:2px 0px;
+	width:100px;
+	min-width:120px;
+}
+
+div.navigation {
+	padding:5px;	
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+
+input.memcache {
+	width: 300px;
+}

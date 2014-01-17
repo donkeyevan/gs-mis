@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns="http://www.springframework.org/schema/beans" 
+       	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       	xmlns:p="http://www.springframework.org/schema/p" 
+       	xmlns:tx="http://www.springframework.org/schema/tx"
+       	xmlns:context="http://www.springframework.org/schema/context"
+       	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	   		">
+
+	<context:property-placeholder location="/WEB-INF/spring.properties" />
+    
+    <!-- Enable annotation style of managing transactions -->
+	<tx:annotation-driven transaction-manager="transactionManager" />	
+   
+    <!-- Declare the Hibernate SessionFactory for retrieving Hibernate sessions -->
+    <!-- See http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/orm/hibernate3/annotation/AnnotationSessionFactoryBean.html --> 							
+	<!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/SessionFactory.html -->
+	<!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/Session.html -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+				 p:dataSource-ref="dataSource"
+				 p:configLocation="${hibernate.config}"
+			>
+			<property name="packagesToScan">
+				<list>
+					<value>com.youai.gamemis.model</value>
+					<value>com.youai.gs.dzm.model</value>
+					<value>com.youai.gs.common.message.model</value>
+					<value>com.youai.gs.common.payment.model</value>
+					<value>com.youai.gs.common.game.model</value>
+					<value>playercenter.model</value>
+				</list>
+			</property>	
+	</bean>
+	
+	<bean id="gsSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+				 p:dataSource-ref="gameServerDataSource"
+				 p:configLocation="${hibernate.config}"
+			>
+			<property name="packagesToScan">
+				<list>
+					<!--  <value>com.youai.gamemis.model</value>
+					<value>flighttycoon.model</value>-->
+					<value>com.youai.gamemis.model</value>
+					<value>com.youai.gs.common.game.model</value>
+					<value>com.youai.gs.dzm.model</value>
+				</list>
+			</property>	
+	</bean>
+
+	<bean id="statSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+				 p:dataSource-ref="statDataSource"
+				 p:configLocation="${hibernate.config}"
+			>
+			<property name="packagesToScan">
+				<list>
+					<value>com.youai.stat.model</value>
+				</list>
+			</property>	
+	</bean>
+	
+	<!-- Declare a datasource that has pooling capabilities-->	 
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+				p:driverClass="${app.jdbc.driverClassName}"
+				p:jdbcUrl="${app.jdbc.url}"
+				p:user="${app.jdbc.username}"
+				p:password="${app.jdbc.password}"
+				p:acquireIncrement="1"
+				p:idleConnectionTestPeriod="60"
+				p:maxPoolSize="20"
+				p:maxStatements="0"
+				p:minPoolSize="1" />
+
+	<!-- Declare a datasource that has pooling capabilities-->	 
+	<bean id="statDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+				p:driverClass="${stat.jdbc.driverClassName}"
+				p:jdbcUrl="${stat.jdbc.url}"
+				p:user="${stat.jdbc.username}"
+				p:password="${stat.jdbc.password}"
+				p:acquireIncrement="1"
+				p:idleConnectionTestPeriod="60"
+				p:maxPoolSize="2"
+				p:maxStatements="0"
+				p:minPoolSize="1" />
+				
+	<bean id="gameServerDataSource" class="com.youai.gamemis.model.dao.MyRoutingDataSource">
+		<property name="resolvedDataSources">
+              <map key-type="java.lang.String">
+                 <entry key="dataSource2" value-ref="dataSource"/>
+              </map>
+        </property>
+        <property name="resolvedDefaultDataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- Declare a transaction manager-->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" 
+       			p:sessionFactory-ref="sessionFactory" />
+    
+
+     
+</beans>
